@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student's Perspective</title>
+    <title>Teacher's Perspective</title>
     <style>
+        /* General body styling */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -15,130 +16,139 @@
             background-position: center;
             background-repeat: no-repeat;
             color: #333;
-            perspective: 1000px;
+            height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
+        /* Header styling */
         header {
-            background: rgba(76, 175, 80, 0.8);
+            background: rgba(76, 175, 80, 0.8); /* Semi-transparent green */
             color: white;
             padding: 20px;
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease-in-out; /* Smooth transition effect */
         }
 
-        header:hover {
-            transform: translateZ(30px);
-        }
-
+        /* Navigation bar styling */
         nav {
             display: flex;
             justify-content: center;
-            background: rgba(51, 51, 51, 0.8);
-            transition: transform 0.3s ease;
+            background: rgba(51, 51, 51, 0.8); /* Semi-transparent dark background */
         }
 
+        /* Styling for each link in the navigation */
         nav a {
             color: white;
             padding: 14px 20px;
-            text-decoration: none;
+            text-decoration: none; /* Remove underline */
             text-align: center;
-            transition: transform 0.5s ease, background-color 0.3s ease;
+            transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out; /* Smooth hover effect */
         }
 
+        /* Hover effect for navigation links */
         nav a:hover {
             background-color: #ddd;
             color: black;
-            transform: translateZ(15px) rotateY(10deg);
+            transform: translateY(-2px); /* Slight lift on hover */
         }
 
+        /* General content styling */
         .content {
             padding: 20px;
+            max-width: 1200px; /* Max width for larger screens */
+            margin: 0 auto; /* Center the content */
         }
 
+        /* Styling for resource, lesson plan, and tips sections */
         .resources,
         .lesson-plans,
         .tips {
             margin: 20px 0;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
             padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.4s ease;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+            transition: all 0.4s ease-in-out; /* Smooth hover effect */
         }
 
+        /* Hover effect for sections */
         .resources:hover,
         .lesson-plans:hover,
         .tips:hover {
-            transform: rotateX(5deg) rotateY(5deg) translateZ(20px);
+            transform: translateY(-5px); /* Slight upward movement */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow on hover */
         }
 
-        /* Lesson Grid Styles */
+        /* Lesson grid layout for lesson items */
         .lesson-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+            gap: 20px; /* Space between grid items */
             padding: 20px;
         }
 
+        /* Individual lesson item styling */
         .lesson-item {
             background: white;
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+            transition: transform 0.3s ease-in-out; /* Smooth scaling effect */
+            text-align: center; /* Center-align text */
         }
 
+        /* Hover effect for lesson items */
         .lesson-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            /* Hover effect */
+            transform: scale(1.03); /* Slight enlargement */
         }
 
+        /* Footer styling */
         footer {
             text-align: center;
             padding: 10px;
-            background: rgba(51, 51, 51, 0.8);
+            background: rgba(51, 51, 51, 0.8); /* Semi-transparent dark background */
             color: white;
             position: relative;
             bottom: 0;
-            width: 100%;
-            transition: transform 0.3s ease;
+            width: 100%; /* Full width footer */
+            transition: all 0.4s ease-in-out; /* Smooth hover effect */
         }
 
+        /* Hover effect for footer */
         footer:hover {
-            transform: translateZ(20px);
+            transform: translateY(-2px); /* Slight lift on hover */
         }
     </style>
 </head>
 
 <body>
-    <header>
+    <!-- Header section -->
+    <header id="header">
         <h1>Welcome to the Teacher's Perspective</h1>
         <p>Your resource for teaching tips, lesson plans, and classroom management.</p>
     </header>
 
+    <!-- Navigation bar with links to sections -->
     <nav>
         <a href="#resources">Resources</a>
-        <a href="#lesson-plans">Lesson Plans</a> <!-- Updated to scroll to Lesson Plans section -->
+        <a href="#lesson-plans">Lesson Plans</a>
         <a href="#tips">Teaching Tips</a>
         <a href="#contact">Contact</a>
     </nav>
 
+    <!-- Main content area -->
     <div class="content">
-        <section id="resources" class="resources">
-            <h2>Teaching Resources</h2>
-            <p>Explore various resources for classroom activities, worksheets, and educational tools.</p>
-        </section>
 
-        <!-- Lesson Plans Section with Grid -->
-        <section id="lesson-plans" class="lesson-plans">
+         <!-- Section for lesson plans with a grid layout -->
+         <section id="lesson-plans" class="lesson-plans">
             <h2>Lesson Plans</h2>
             <p>Access a collection of lesson plans for different subjects and grades.</p>
             <div class="lesson-grid">
+                <!-- Individual lesson items -->
                 <div class="lesson-item">
                     <h3>Math - Grade 5</h3>
                     <p>Basic arithmetic, fractions, and geometry.</p>
-                    <a href="#">View Lesson</a>
+                    <a href="01_3d_model.html">View Lesson</a>
                 </div>
                 <div class="lesson-item">
                     <h3>Science - Grade 6</h3>
@@ -158,13 +168,23 @@
             </div>
         </section>
 
-        <section id="tips" class="tips">
-            <h2>Teaching Tips</h2>
-            <p>Find useful tips on classroom management, student engagement, and more.</p>
-        </section>
+     <!-- Section for teaching resources -->
+ <section id="resources" class="resources">
+    <h2>Student's Profile</h2>
+    <p>Explore various resources for classroom activities, worksheets, and educational tools.</p>
+</section>
+
+<!-- Announcement or tips section -->
+<section id="tips" class="tips">
+    <h2>Announcement</h2>
+    <p>Find useful tips on classroom management, student engagement, and more.</p>
+</section>
+
+
     </div>
 
-    <footer>
+    <!-- Footer section -->
+    <footer id="footer">
         <p>&copy; 2024 Teacher's Perspective. All rights reserved.</p>
     </footer>
 </body>
