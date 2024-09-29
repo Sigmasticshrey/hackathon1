@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profiles and New Entry</title>
+    <style>
+        /* Basic body styling with background image */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;   
+            padding: 20px;
+            background-image: url('BACKGRUND3.jpeg');
+            background-size: contain; /* Make the image smaller */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            background-attachment: fixed; /* Keep it fixed during scrolling */
+            color: white;
+        }
+
+        /* Header styling */
+        #header {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        /* New student button */
+        #new-student-btn {
+            background-color: blue;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1.2em;
+            display: inline-block;
+            margin-left: 0;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #new-student-btn:hover {
+            background-color: red;
+            transform: translateY(-3px);
+        }
+
+        /* Search Section */
+        #search-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #search-bar {
+            padding: 15px;
+            width: 400px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        /* Student List */
+        .student-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .student-list li {
+            background-color: rgba(0, 0, 0, 0.7); /* Adjust transparency here */
+            color: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        /* Hover effect on student name */
+        .student-list li:hover {
+            background-color: red;
+            transform: translateY(-3px);
+        }
+
+        /* Form container styling */
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.7); /* Increased transparency */
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: white;
+            border: 2px solid white;
+            text-align: center;
+        }
+
+        /* New student form */
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+            color: white;
+        }
+
+        /* Required star styling */
+        .required::after {
+            content: " *";
+            color: red;
+        }
+
+        .form-container input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid white;
+            border-radius: 5px;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        #submit-btn {
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        #submit-btn:hover {
+            background-color: darkblue;
+        }
+
+        /* Back button */
+        #back-btn {
+            background-color: gray;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        #back-btn:hover {
+            background-color: darkgray;
+        }
+
+        /* Hide the new student form by default */
+        #new-student-form {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div id="header">Student Profiles</div>
+
+    <!-- New Student Button -->
+    <div id="new-student-btn" onclick="showNewStudentForm()">NEW ++</div>
+
+    <!-- Search Section -->
+    <div id="search-section">
+        <input type="text" id="search-bar" placeholder="Search for a student...">
+    </div>
+
+    <!-- Student List -->
+    <ul class="student-list" id="student-list">
+        <!-- Student names will appear here -->
+    </ul>
+
+    <!-- New Student Form Section (Initially Hidden) -->
+    <div id="new-student-form" class="form-container">
+        <h2>Student Information</h2>
+        <label for="first-name" class="required">First Name:</label>
+        <input type="text" id="first-name" name="first-name" placeholder="Enter first name" required>
+
+        <label for="last-name" class="required">Last Name:</label>
+        <input type="text" id="last-name" name="last-name" placeholder="Enter last name" required>
+
+        <label for="father-name" class="required">Father's Name:</label>
+        <input type="text" id="father-name" name="father-name" placeholder="Enter father's name" required>
+
+        <label for="mother-name" class="required">Mother's Name:</label>
+        <input type="text" id="mother-name" name="mother-name" placeholder="Enter mother's name" required>
+
+        <label for="guardian-name">Guardian's Name:</label>
+        <input type="text" id="guardian-name" name="guardian-name" placeholder="Enter guardian's name">
+
+        <label for="father-phone" class="required">Father's Phone Number:</label>
+        <input type="text" id="father-phone" name="father-phone" placeholder="Enter 10 digits" maxlength="10" pattern="\d{10}" title="Please enter a valid 10-digit phone number" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
+        <label for="mother-phone" class="required">Mother's Phone Number:</label>
+        <input type="text" id="mother-phone" name="mother-phone" placeholder="Enter 10 digits" maxlength="10" pattern="\d{10}" title="Please enter a valid 10-digit phone number" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
+        <label for="guardian-phone">Guardian's Phone Number:</label>
+        <input type="text" id="guardian-phone" name="guardian-phone" placeholder="Enter guardian's phone number" maxlength="10" pattern="\d{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
+        <!-- Submit and Back buttons -->
+        <button id="submit-btn" onclick="saveNewStudent()">Submit</button>
+        <button id="back-btn" onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        let studentDataList = []; // Store student data
+
+        // Function to toggle the new student form display
+        function showNewStudentForm() {
+            document.getElementById('new-student-form').style.display = 'block';
+            document.getElementById('search-section').style.display = 'none';
+            clearForm(); // Clear form inputs
+        }
+
+        // Function to save new student information and update the list
+        function saveNewStudent() {
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const fatherName = document.getElementById('father-name').value;
+            const motherName = document.getElementById('mother-name').value;
+            const guardianName = document.getElementById('guardian-name').value;
+            const fatherPhone = document.getElementById('father-phone').value;
+            const motherPhone = document.getElementById('mother-phone').value;
+
+            // Validate phone numbers
+            if (fatherPhone.length !== 10 || motherPhone.length !== 10) {
+                alert('Father and Mother phone numbers must be exactly 10 digits long.');
+                return;
+            }
+
+            if (firstName && lastName && fatherName && motherName && fatherPhone && motherPhone) {
+                // Create a student object and add it to the list
+                const student = {
+                    firstName,
+                    lastName,
+                    fatherName,
+                    motherName,
+                    guardianName,
+                    fatherPhone,
+                    motherPhone
+                };
+                studentDataList.push(student); // Store student data
+
+                // Add the new student to the displayed list
+                updateStudentList();
+                goBack(); // Go back to the search section
+            } else {
+                alert('Please fill all required fields.');
+            }
+        }
+
+        // Function to update the student list in the UI
+        function updateStudentList() {
+            const studentList = document.getElementById('student-list');
+            studentList.innerHTML = ''; // Clear current list
+
+            studentDataList.forEach((student, index) => {
+                const newStudentItem = document.createElement('li');
+                newStudentItem.textContent = `${student.firstName} ${student.lastName}`;
+                newStudentItem.onclick = () => showStudentInfo(index); // Set click event to show info
+                studentList.appendChild(newStudentItem);
+            });
+        }
+
+        // Function to go back to the main page
+        function goBack() {
+            const form = document.getElementById('new-student-form');
+            const searchSection = document.getElementById('search-section');
+            
+            // Hide the form and show the search section again
+            form.style.display = 'none';
+            searchSection.style.display = 'block';
+        }
+
+        // Clear form inputs
+        function clearForm() {
+            document.getElementById('first-name').value = '';
+            document.getElementById('last-name').value = '';
+            document.getElementById('father-name').value = '';
+            document.getElementById('mother-name').value = '';
+            document.getElementById('guardian-name').value = '';
+            document.getElementById('father-phone').value = '';
+            document.getElementById('mother-phone').value = '';
+            document.getElementById('guardian-phone').value = '';
+        }
+
+        // Search functionality
+        const searchBar = document.getElementById('search-bar');
+        searchBar.addEventListener('keyup', function() {
+            const filter = searchBar.value.toLowerCase();
+            const students = document.querySelectorAll('.student-list li');
+            
+            students.forEach(function(student) {
+                const text = student.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    student.style.display = '';
+                } else {
+                    student.style.display = 'none';
+                }
+            });
+        });
+
+        // Function to display student info in the form
+        function showStudentInfo(index) {
+            const studentData = studentDataList[index]; // Get student data by index
+            
+            // Populate the form with the student's data
+            document.getElementById('first-name').value = studentData.firstName;
+            document.getElementById('last-name').value = studentData.lastName;
+            document.getElementById('father-name').value = studentData.fatherName;
+            document.getElementById('mother-name').value = studentData.motherName;
+            document.getElementById('guardian-name').value = studentData.guardianName;
+            document.getElementById('father-phone').value = studentData.fatherPhone;
+            document.getElementById('mother-phone').value = studentData.motherPhone;
+
+            // Show the form with student info
+            showNewStudentForm();
+        }
+    </script>
+
+</body>
+</html>
